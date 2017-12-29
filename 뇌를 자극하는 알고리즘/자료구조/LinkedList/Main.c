@@ -14,14 +14,12 @@ int main(void){
 		AppendNode(&List, NewNode);
 	}
 
-	/*
 	//리스트 출력
 	Count = GetNodeCount(List);
 	for(i=0; i<Count; i++){
 		Current = GetNodeAt(List, i);
 		printf("List[%d] : %d\n", i, Current->Data);
 	}
-	*/
 
 	//세 번째 노드 전에 새 노드 삽입
 	NewNode = CreateNode(10);
