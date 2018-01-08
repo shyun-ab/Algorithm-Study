@@ -19,5 +19,6 @@ void InsertAfter(Node* Current, Node* NewNode);
 void RemoveNode(Node** Head, Node* Remove);
 Node* GetNodeAt(Node* Head, int Location);
 int GetNodeCount(Node* Head);
+void PrintReverse(Node* Head);
 
 #endif
