@@ -80,7 +80,7 @@ int GetNodeCount(Node* Head) {
 		Current = Current->NextNode;
 		Count++;
 
-		//헤드 하나만 있는 리스트라면 무한반복 하게 되므로 break를 해주어야 함!
+		//그대로 계속 가면 무한반복 하게 되므로 Head에서 break를 해주어야 함!
 		if (Current == Head)
 			break;
 	}
