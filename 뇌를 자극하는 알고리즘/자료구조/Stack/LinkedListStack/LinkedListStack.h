@@ -10,8 +10,7 @@ typedef struct tagNode {
 	struct tagNode* NextNode;
 } Node;
 
-typedef struct tagLinkedListStack
-{
+typedef struct tagLinkedListStack {
 	Node* List;
 	Node* Top;
 } LinkedListStack;
