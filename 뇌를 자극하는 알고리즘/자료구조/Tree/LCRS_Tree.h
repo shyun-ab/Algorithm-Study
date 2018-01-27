@@ -18,5 +18,6 @@ void DestroyNode(Node* Node);
 void DestroyTree(Node* Root);
 void AddChildNode(Node* ParentNode, Node* ChildNode);
 void PrintTree(Node* Node, int Depth);
+void PrintNodesAtLevel(Node* Root, int Level);
 
 #endif // !LCRS_TREE_H
