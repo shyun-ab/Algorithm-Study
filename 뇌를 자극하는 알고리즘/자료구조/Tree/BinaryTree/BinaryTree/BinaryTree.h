@@ -18,6 +18,7 @@ void DestroyNode(Node* Node);
 void DestroyTree(Node* Root);
 
 void PreorderPrintTree(Node* Node);
-void 
+void InorderPrintTree(Node* Node);
+void PostorderPrintTree(Node* Node);
 
 #endif // !BINARY_TREE_H
