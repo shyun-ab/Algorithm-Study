@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExpressionTree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ExpressionTree.c" />
+    <ClCompile Include="Main.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C71E655A-C0FB-41D3-85DB-77021A19F6E4}</ProjectGuid>
