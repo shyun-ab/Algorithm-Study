@@ -1,5 +1,3 @@
-//SCPC 1회 예선
-
 /*
 You should use the statndard input/output
 
@@ -11,15 +9,58 @@ Please be very careful.
 */
 
 #include <stdio.h>
+#define TRUE 1
+#define FALSE 0
+
+//str - 뒤에 이어지는 string, n - 남은 str의 개수
+int check_s(char *str, int n) { 
+	int i = 0;
+
+	for (i = 0; i < n; i++)
+	{
+		if (str[i] == ')') 
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+int check_m(char *str, int n) {
+	int i = 0;
+
+	for (i = 0; i < n; i++)
+	{
+		if (str[i] == '}')
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+int check_l(char *str, int n) {
+	int i = 0;
+
+	for (i = 0; i < n; i++)
+	{
+		if (str[i] == ']')
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
 
 int Answer;
 
 int main(void)
 {
 	int T, test_case;
-	int N, *a, K;
-	int i;
-	int current;
+	char *str;
 	/*
 	The freopen function below opens input.txt file in read only mode, and afterward,
 	the program will read from input.txt file instead of standard(keyboard) input.
@@ -40,44 +81,16 @@ int main(void)
 	scanf("%d", &T);
 	for (test_case = 0; test_case < T; test_case++)
 	{
+		Answer = 0;
+
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		/*
 		Implement your algorithm here.
 		The answer to the case will be stored in variable Answer.
 		*/
 		/////////////////////////////////////////////////////////////////////////////////////////////
-		current = 0;
-		Answer = 1;
 
-		scanf("%d", &N);
-		a = (int*)malloc(sizeof(int)*N);
-
-		for (i = 0; i < N; i++)
-		{
-			scanf("%d", &a[i]);
-		}
-		scanf("%d", &K);
-
-		for (i = 0; i < N-1; i++)
-		{
-			if ((a[i + 1] - a[i]) > K)
-			{
-				Answer = -1;
-				break;
-			}
-		}
-
-		if (Answer != -1)
-		{
-			for (i = 0; i < N - 1; i++)
-			{
-				if (current + K < a[i + 1])
-				{
-					current = a[i];
-					Answer++;
-				}
-			}
-		}
+		scanf("%s", &str);
 
 		// Print the answer to standard output(screen).
 
