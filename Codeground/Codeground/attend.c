@@ -1,5 +1,3 @@
-//아직 못 품!!
-
 /*
 You should use the statndard input/output
 
@@ -11,58 +9,30 @@ Please be very careful.
 */
 
 #include <stdio.h>
-#define TRUE 1
-#define FALSE 0
+#include <stdlib.h>
 
-//str - 뒤에 이어지는 string, n - 남은 str의 개수
-int check_s(char *str, int n) { 
-	int i = 0;
+int Answer, N;
+int dp[1001][2][3];
 
-	for (i = 0; i < n; i++)
-	{
-		if (str[i] == ')') 
-		{
-			return TRUE;
-		}
-	}
+int attend(int date, int late, int absence) {
+	if (late == 2) return 0;
+	if (absence == 3) return 0;
 
-	return FALSE;
+	if (date == N) return 1;
+
+	int ret = dp[date][late][absence];
+	if (ret != -1) return ret;
+	ret = 0;
+
+	ret += attend(date + 1, late + 1, 0) + attend(date + 1, late, absence + 1) + attend(date + 1, late, 0);
+
+	return ret % 1000000;
 }
-
-int check_m(char *str, int n) {
-	int i = 0;
-
-	for (i = 0; i < n; i++)
-	{
-		if (str[i] == '}')
-		{
-			return TRUE;
-		}
-	}
-
-	return FALSE;
-}
-
-int check_l(char *str, int n) {
-	int i = 0;
-
-	for (i = 0; i < n; i++)
-	{
-		if (str[i] == ']')
-		{
-			return TRUE;
-		}
-	}
-
-	return FALSE;
-}
-
-int Answer;
 
 int main(void)
 {
 	int T, test_case;
-	char *str;
+
 	/*
 	The freopen function below opens input.txt file in read only mode, and afterward,
 	the program will read from input.txt file instead of standard(keyboard) input.
@@ -83,8 +53,6 @@ int main(void)
 	scanf("%d", &T);
 	for (test_case = 0; test_case < T; test_case++)
 	{
-		Answer = 0;
-
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		/*
 		Implement your algorithm here.
@@ -92,9 +60,14 @@ int main(void)
 		*/
 		/////////////////////////////////////////////////////////////////////////////////////////////
 
-		scanf("%s", &str);
-
 		// Print the answer to standard output(screen).
+
+		Answer = 0;
+		scanf("%d", &N);
+
+		memset(dp, -1, sizeof(dp));
+
+		Answer = attend(0, 0, 0);
 
 		printf("Case #%d\n", test_case + 1);
 		printf("%d\n", Answer);
