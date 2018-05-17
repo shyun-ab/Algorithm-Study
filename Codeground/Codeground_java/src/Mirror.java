@@ -6,7 +6,7 @@ import java.util.*;
 public class Mirror {
 
 	static int Answer;
-	static int[][] rooms;
+	static char[][] rooms;
 	static boolean[][] visited;
 	static int x, y, N;
 
@@ -26,20 +26,22 @@ public class Mirror {
 		Scanner sc = new Scanner(new FileInputStream("input.txt"));
 
 		int T = sc.nextInt();
+		String str;
 		
 		for(int test_case = 0; test_case < T; test_case++) {
 
 			Answer = 0;
 			N = sc.nextInt();
-			rooms = new int[N+1][N+1];
+			rooms = new char[N+1][N+1];
 			visited = new boolean[N+1][N+1];
-			Arrays.fill(visited, false);
 			x = 1;
 			y = 1;
 			
 			for(int i = 1; i < N+1; i++){
+				str = sc.next();
 				for(int j = 1; j < N+1; j++){
-					rooms[i][j] = sc.nextInt();
+					rooms[i][j] = str.charAt(j-1);
+					visited[i][j] = false;
 					// '1' = /
 					// '2' = \
 				}
@@ -47,6 +49,11 @@ public class Mirror {
 
 			visit(0);
 			
+			for(int i = 1; i < N+1; i++){
+				for(int j = 1; j < N+1; j++){
+					if(visited[i][j]) Answer++;
+				}
+			}
 			
 			// Print the answer to standard output(screen).
 			System.out.println("Case #"+(test_case+1));
@@ -60,15 +67,57 @@ public class Mirror {
 		if(x == 0 || y == 0 || x > N || y > N){
 			return;
 		}
-		int isMirror = rooms[y][x];
+		char isMirror = rooms[y][x];
 		
-		if(isMirror == 0){
+		if(isMirror == '0'){
 			move(curDir);
 			visit(curDir);
 		}
 		else {
 			visited[y][x] = true;
-			//맵에서 이동하는 거 찾아보기!
+			if(isMirror == '1'){
+				switch(curDir) {
+				case 0:
+					y--;
+					curDir = 3;
+					break;
+				case 1:
+					x--;
+					curDir = 2;
+					break;
+				case 2:
+					y++;
+					curDir = 1;
+					break;
+				case 3:
+					x++;
+					curDir = 0;
+					break;
+				}
+			}
+			else if(isMirror == '2'){
+				switch(curDir) {
+				case 0:
+					y++;
+					curDir = 1;
+					break;
+				case 1:
+					x++;
+					curDir = 0;
+					break;
+				case 2:
+					y--;
+					curDir = 3;
+					break;
+				case 3:
+					x--;
+					curDir = 2;
+					break;
+				}
+			}
+			else { System.out.println("error"); }
+			
+			visit(curDir);
 		}
 	}
 	
