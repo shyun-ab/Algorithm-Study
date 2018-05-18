@@ -5,9 +5,7 @@ public class RGBstreet {
 
 	static int Answer;
 	static int N;
-	static int[][] street;
-	static int[] RGB;
-	static int min, cost;
+	static int[][] cost;
 
 	public static void main(String args[]) throws Exception	{
 		/*
@@ -26,25 +24,38 @@ public class RGBstreet {
 		
 		Answer = 0;
 		N = sc.nextInt();
-		street = new int[N][3];
-		RGB = new int[N];
-		cost = 0;
-		min = Integer.MAX_VALUE;
+		cost = new int[N][3];
 		
 		for(int i = 0; i < N; i++){
 			for(int j = 0; j < 3; j++){
-				street[i][j] = sc.nextInt();
+				cost[i][j] = sc.nextInt();
 			}
 		}
 		
-		
+		Answer = dp();
 		
 		// Print the answer to standard output(screen).
 		System.out.println(Answer);
 	}
 	
 	
-	public static void dp(int i){
+	public static int dp(){
+		for(int i = 1; i < N; i++){
+			for(int j = 0; j < 3; j++){
+				switch(j){
+				case 0:
+					cost[i][j] += Math.min(cost[i-1][1], cost[i-1][2]);
+					break;
+				case 1:
+					cost[i][j] += Math.min(cost[i-1][0], cost[i-1][2]);
+					break;
+				case 2:
+					cost[i][j] += Math.min(cost[i-1][0], cost[i-1][1]);
+					break;
+				}
+			}
+		}
 		
+		return Math.min(cost[N-1][0], Math.min(cost[N-1][1], cost[N-1][2]));
 	}
 }
