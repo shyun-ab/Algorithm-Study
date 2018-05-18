@@ -4,7 +4,10 @@ import java.util.*;
 public class RGBstreet {
 
 	static int Answer;
-	static int[][] cost;
+	static int N;
+	static int[][] street;
+	static int[] RGB;
+	static int min, cost;
 
 	public static void main(String args[]) throws Exception	{
 		/*
@@ -20,23 +23,28 @@ public class RGBstreet {
 		 */
 		//Scanner sc = new Scanner(System.in);
 		Scanner sc = new Scanner(new FileInputStream("input.txt"));
-
-		int N;
 		
 		Answer = 0;
 		N = sc.nextInt();
-		cost = new int[N][3];
+		street = new int[N][3];
+		RGB = new int[N];
+		cost = 0;
+		min = Integer.MAX_VALUE;
 		
 		for(int i = 0; i < N; i++){
 			for(int j = 0; j < 3; j++){
-				cost[i][j] = sc.nextInt();
+				street[i][j] = sc.nextInt();
 			}
 		}
 		
 		
 		
-		
 		// Print the answer to standard output(screen).
 		System.out.println(Answer);
+	}
+	
+	
+	public static void dp(int i){
+		
 	}
 }
